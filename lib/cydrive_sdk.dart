@@ -30,7 +30,7 @@ class CyDriveClient {
   bool isLogin = false;
   final String serverHost;
 
-  CyDriveClient(this.serverHost, this._deviceId, {Account? account = null}) {
+  CyDriveClient(this.serverHost, this._deviceId, {Account? account}) {
     _baseAddr = "http://$serverHost:6454";
     getApplicationDocumentsDirectory().then((value) {
       _cookies =
@@ -64,6 +64,7 @@ class CyDriveClient {
         LoginRequest(email: _account!.email, password: _account!.password);
     dio.Response<String> res =
         await _client.post("/login", data: SerializeRequest(req));
+
     var resp = GetResponse(res);
 
     isLogin = resp.statusCode == StatusCode.Ok;
@@ -94,7 +95,7 @@ class CyDriveClient {
     var downloadResponse = DownloadResponse()
       ..mergeFromProto3Json(jsonDecode(resp.data));
 
-    Int64 offset = 0 as Int64;
+    Int64 offset = Int64(0);
     if (!shouldTruncate && await File(savePath).exists()) {
       await File(savePath).stat().then((value) => offset = value.size as Int64);
     }
