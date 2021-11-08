@@ -1,6 +1,6 @@
 name: cydrive_sdk
 description: A new Flutter package project.
-version: 0.1.2
+version: 0.2.0
 repository: https://github.com/CyDrive/dart-sdk
 
 environment:

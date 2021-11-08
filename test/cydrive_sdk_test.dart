@@ -25,6 +25,15 @@ void main() {
     print(list);
   });
 
+  test('download', () async {
+    var isLogin = await client.login();
+    expect(isLogin, true);
+
+    var task = await client.download('cy/hello.txt', 'hello.txt',
+        shouldTruncate: true);
+    await task.Wait();
+  });
+
   test('message_service', () async {
     var isLogin = await client.login();
     expect(isLogin, true);

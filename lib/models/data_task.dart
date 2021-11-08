@@ -25,9 +25,12 @@ class DataTask {
       {this.shouldTruncate = false, this.bufferSize = 4096})
       : startAt = DateTime.now();
 
-  void startAsync() async {
-    var uri = Uri.parse(serverAddr);
-    _conn = await Socket.connect(uri.host, uri.port);
+  Future startAsync() async {
+    var index = serverAddr.lastIndexOf(':');
+    var host = serverAddr.substring(0, index);
+    var port = int.parse(serverAddr.substring(index + 1));
+
+    _conn = await Socket.connect(host, port);
     switch (type) {
       case DataTaskType.Download:
         innerTask = DownloadData();
@@ -38,6 +41,7 @@ class DataTask {
 
   Future DownloadData() async {
     File file = File(localPath);
+    print(file.absolute);
     var sendIdTask = sendID();
 
     if (shouldTruncate) {
@@ -58,7 +62,7 @@ class DataTask {
 
   void UploadData() async {}
 
-  void Wait() async {
+  Future Wait() async {
     await innerTask;
   }
 

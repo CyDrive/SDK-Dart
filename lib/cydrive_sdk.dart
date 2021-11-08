@@ -97,7 +97,7 @@ class CyDriveClient {
 
     Int64 offset = Int64(0);
     if (!shouldTruncate && await File(savePath).exists()) {
-      await File(savePath).stat().then((value) => offset = value.size as Int64);
+      await File(savePath).stat().then((value) => offset = Int64(value.size));
     }
 
     var task = DataTask(downloadResponse.taskId, DataTaskType.Download,
@@ -105,7 +105,7 @@ class CyDriveClient {
         shouldTruncate: shouldTruncate);
 
     if (autoStartTask) {
-      task.startAsync();
+      await task.startAsync();
     }
 
     return task;
