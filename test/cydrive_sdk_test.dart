@@ -29,7 +29,7 @@ void main() {
     var isLogin = await client.login();
     expect(isLogin, true);
 
-    var task = await client.download('cy/hello.txt', 'hello.txt',
+    var task = await client.download('cy/hello.txt', 'temp/hello.txt',
         shouldTruncate: true);
     await task.Wait();
   });

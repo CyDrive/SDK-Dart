@@ -40,7 +40,7 @@ class DataTask {
   }
 
   Future DownloadData() async {
-    File file = File(localPath);
+    File file = await File(localPath).create(recursive: true);
     var sendIdTask = sendID();
 
     if (shouldTruncate) {
@@ -53,15 +53,13 @@ class DataTask {
     var fileWriter = file.openWrite(mode: FileMode.writeOnlyAppend);
     await sendIdTask;
 
-    _conn.listen((data) {
+    await _conn.listen((data) {
       fileWriter.add(data);
-    }, onError: () {
-      throw Exception('error when download');
     }, onDone: () async {
       await fileWriter.flush();
       await fileWriter.close();
       await _conn.close();
-    });
+    }).asFuture();
   }
 
   void UploadData() async {}
