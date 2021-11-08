@@ -5,11 +5,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:cydrive_sdk/cydrive_sdk.dart';
 
 void main() {
-  Account account = Account(
-      email: "yah2er0ne@outlook.com", password: passwordHash("hello_world"));
-  final client = CyDriveClient("127.0.0.1", 1, account: account);
+  Account account =
+      Account(email: "test@cydrive.io", password: passwordHash("hello_world"));
+  final client = CyDriveClient("123.57.39.79", 1, account: account);
   test('login', () async {
     var isLogin = await client.login();
+    var account = client.account;
     expect(isLogin, true);
   });
 
@@ -20,7 +21,7 @@ void main() {
     var list = await client.listDir("");
     print(list);
 
-    list = await client.listDir("hello");
+    list = await client.listDir("cy");
     print(list);
   });
 
