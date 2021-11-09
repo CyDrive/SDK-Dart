@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
+import 'package:cydrive_sdk/models/account.pb.dart';
 import 'package:cydrive_sdk/models/http_models.pb.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:protobuf/protobuf.dart';
@@ -46,4 +47,12 @@ String sizeString(int size) {
   }
 
   return size.toString() + ' ' + units[unitIndex];
+}
+
+void updateAccountInfo(Account account, SafeAccount safeAccount) {
+  account.id = safeAccount.id;
+  account.email = safeAccount.email;
+  account.name = safeAccount.name;
+  account.usage = safeAccount.usage;
+  account.cap = safeAccount.cap;
 }

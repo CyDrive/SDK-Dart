@@ -70,7 +70,9 @@ class CyDriveClient {
     isLogin = resp.statusCode == StatusCode.Ok;
 
     if (isLogin) {
-      _account = Account()..mergeFromProto3Json(jsonDecode(resp.data));
+      var safeAccount = SafeAccount()
+        ..mergeFromProto3Json(jsonDecode(resp.data));
+      updateAccountInfo(_account!, safeAccount);
     }
 
     return isLogin;
