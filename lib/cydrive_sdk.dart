@@ -132,7 +132,7 @@ class CyDriveClient {
     var uploadResponse = UploadResponse()
       ..mergeFromProto3Json(jsonDecode(resp.data));
 
-    var task = DataTask(uploadResponse.taskId, DataTaskType.Upload, path,
+    var task = DataTask(uploadResponse.taskId, DataTaskType.Upload, savePath,
         uploadResponse.offset, uploadResponse.nodeAddr, fileInfo);
 
     if (autoStartTask) {
