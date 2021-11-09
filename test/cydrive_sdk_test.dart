@@ -42,6 +42,11 @@ void main() {
     expect(isLogin, true);
 
     var task = await client.upload('temp/upload.txt', 'cy/upload_test.txt');
+    await task.Wait();
+    task = await client.download('cy/hello.txt', 'temp/temp.txt',
+        shouldTruncate: true);
+    await task.Wait();
+    expect(File('temp/temp.txt').readAsStringSync(), 'hello world\n');
   });
 
   test('message_service', () async {
