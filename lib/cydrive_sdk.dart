@@ -32,11 +32,9 @@ class CyDriveClient {
 
   CyDriveClient(this.serverHost, this._deviceId, {Account? account}) {
     _baseAddr = "http://$serverHost:6454";
-    getApplicationDocumentsDirectory().then((value) {
-      _cookies =
-          CookieManager(PersistCookieJar(storage: FileStorage(value.path)));
-      _client.interceptors.add(_cookies);
-    });
+
+    _cookies = CookieManager(CookieJar());
+    _client.interceptors.add(_cookies);
     _client.options.baseUrl = _baseAddr;
     _client.options.connectTimeout = 1000;
     _account = account;
