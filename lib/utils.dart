@@ -23,11 +23,11 @@ String passwordHash(String passwd) {
   return res;
 }
 
-String SerializeRequest(GeneratedMessage message) {
+String serializeRequest(GeneratedMessage message) {
   return jsonEncode(message.toProto3Json());
 }
 
-Response GetResponse(dio.Response<String> res) {
+Response getResponse(dio.Response<String> res) {
   return Response()..mergeFromProto3Json(jsonDecode(res.data!));
 }
 

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cydrive_sdk/models/account.pb.dart';
 import 'package:cydrive_sdk/utils.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -32,6 +34,14 @@ void main() {
     var task = await client.download('cy/hello.txt', 'temp/hello.txt',
         shouldTruncate: true);
     await task.Wait();
+    expect(File('temp/hello.txt').readAsStringSync(), 'hello world\n');
+  });
+
+  test('upload', () async {
+    var isLogin = await client.login();
+    expect(isLogin, true);
+
+    var task = await client.upload('temp/upload.txt', 'cy/upload_test.txt');
   });
 
   test('message_service', () async {

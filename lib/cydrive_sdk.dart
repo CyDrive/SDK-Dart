@@ -63,9 +63,9 @@ class CyDriveClient {
     var req =
         LoginRequest(email: _account!.email, password: _account!.password);
     dio.Response<String> res =
-        await _client.post("/login", data: SerializeRequest(req));
+        await _client.post("/login", data: serializeRequest(req));
 
-    var resp = GetResponse(res);
+    var resp = getResponse(res);
 
     isLogin = resp.statusCode == StatusCode.Ok;
 
@@ -79,7 +79,7 @@ class CyDriveClient {
   Future<List<FileInfo>> listDir(String path) async {
     dio.Response<String> res =
         await _client.get("/list/" + Uri.encodeFull(path));
-    var resp = GetResponse(res);
+    var resp = getResponse(res);
     var getFileListResponse = GetFileListResponse()
       ..mergeFromProto3Json(jsonDecode(resp.data));
     return getFileListResponse.fileInfoList;
@@ -91,7 +91,7 @@ class CyDriveClient {
 
     dio.Response<String> res =
         await _client.get("/file/" + Uri.encodeFull(path));
-    var resp = GetResponse(res);
+    var resp = getResponse(res);
     var downloadResponse = DownloadResponse()
       ..mergeFromProto3Json(jsonDecode(resp.data));
 
@@ -109,6 +109,46 @@ class CyDriveClient {
     }
 
     return task;
+  }
+
+  Future<DataTask> upload(String path, String savePath,
+      {bool autoStartTask = true, shouldTruncate = true}) async {
+    var fileStat = await File(path).stat();
+    var fileInfo = FileInfo(
+      filePath: savePath,
+      size: Int64(fileStat.size),
+      modifyTime: Timestamp.fromDateTime(fileStat.modified),
+      isDir: false,
+      isCompressed: false,
+    );
+
+    var req = UploadRequest(
+      fileInfo: fileInfo,
+      shouldTruncate: shouldTruncate,
+    );
+    dio.Response<String> res = await _client
+        .put('/file/' + Uri.encodeFull(savePath), data: serializeRequest(req));
+    var resp = getResponse(res);
+    var uploadResponse = UploadResponse()
+      ..mergeFromProto3Json(jsonDecode(resp.data));
+
+    var task = DataTask(uploadResponse.taskId, DataTaskType.Upload, path,
+        uploadResponse.offset, uploadResponse.nodeAddr, fileInfo);
+
+    if (autoStartTask) {
+      await task.startAsync();
+    }
+
+    return task;
+  }
+
+  Future<FileInfo> delete(String path) async {
+    dio.Response<String> res =
+        await _client.delete('/file/' + Uri.encodeFull(path));
+    var resp = getResponse(res);
+    var deleteResponse = DeleteResponse()
+      ..mergeFromProto3Json(jsonDecode(resp.data));
+    return deleteResponse.fileInfo;
   }
 
   Future<bool> connectMessageService({int? deviceId}) async {
