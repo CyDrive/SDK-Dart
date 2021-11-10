@@ -194,4 +194,50 @@ class CyDriveClient {
   void listenMessage(void Function(Message) onData) {
     _onRecvMessage.listen(onData);
   }
+
+  // Share Service
+  Future<String> share(String filePath,
+      {int expire = 7 * Duration.minutesPerDay,
+      List<int>? to,
+      String password = '',
+      int accessCount = -1}) async {
+    var req = ShareRequest(
+        filePath: filePath,
+        expire: expire,
+        to: to,
+        password: password,
+        accessCount: accessCount);
+
+    dio.Response<String> res =
+        await _client.post('/share', data: serializeRequest(req));
+
+    var resp = getResponse(res);
+    var shareResponse = ShareResponse()
+      ..mergeFromProto3Json(jsonDecode(resp.data));
+
+    return shareResponse.link;
+  }
+
+  Future<DataTask> downloadShareFile(String link, String savePath,
+      {bool autoStartTask = true, bool shouldTruncate = false}) async {
+    dio.Response<String> res = await _client.get("/share/" + link);
+    var resp = getResponse(res);
+    var downloadResponse = DownloadResponse()
+      ..mergeFromProto3Json(jsonDecode(resp.data));
+
+    Int64 offset = Int64(0);
+    if (!shouldTruncate && await File(savePath).exists()) {
+      await File(savePath).stat().then((value) => offset = Int64(value.size));
+    }
+
+    var task = DataTask(downloadResponse.taskId, DataTaskType.Download,
+        savePath, offset, downloadResponse.nodeAddr, downloadResponse.fileInfo,
+        shouldTruncate: shouldTruncate);
+
+    if (autoStartTask) {
+      await task.startAsync();
+    }
+
+    return task;
+  }
 }

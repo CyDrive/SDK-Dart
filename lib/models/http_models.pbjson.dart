@@ -44,6 +44,20 @@ const LoginRequest$json = const {
 
 /// Descriptor for `LoginRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List loginRequestDescriptor = $convert.base64Decode('CgxMb2dpblJlcXVlc3QSFAoFZW1haWwYASABKAlSBWVtYWlsEhoKCHBhc3N3b3JkGAIgASgJUghwYXNzd29yZA==');
+@$core.Deprecated('Use shareRequestDescriptor instead')
+const ShareRequest$json = const {
+  '1': 'ShareRequest',
+  '2': const [
+    const {'1': 'file_path', '3': 1, '4': 1, '5': 9, '10': 'filePath'},
+    const {'1': 'expire', '3': 2, '4': 1, '5': 5, '10': 'expire'},
+    const {'1': 'to', '3': 3, '4': 3, '5': 5, '10': 'to'},
+    const {'1': 'password', '3': 4, '4': 1, '5': 9, '10': 'password'},
+    const {'1': 'access_count', '3': 5, '4': 1, '5': 5, '10': 'accessCount'},
+  ],
+};
+
+/// Descriptor for `ShareRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List shareRequestDescriptor = $convert.base64Decode('CgxTaGFyZVJlcXVlc3QSGwoJZmlsZV9wYXRoGAEgASgJUghmaWxlUGF0aBIWCgZleHBpcmUYAiABKAVSBmV4cGlyZRIOCgJ0bxgDIAMoBVICdG8SGgoIcGFzc3dvcmQYBCABKAlSCHBhc3N3b3JkEiEKDGFjY2Vzc19jb3VudBgFIAEoBVILYWNjZXNzQ291bnQ=');
 @$core.Deprecated('Use getFileListResponseDescriptor instead')
 const GetFileListResponse$json = const {
   '1': 'GetFileListResponse',
@@ -109,3 +123,13 @@ const GetMessageResponse$json = const {
 
 /// Descriptor for `GetMessageResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getMessageResponseDescriptor = $convert.base64Decode('ChJHZXRNZXNzYWdlUmVzcG9uc2USKwoIbWVzc2FnZXMYASADKAsyDy5tb2RlbHMuTWVzc2FnZVIIbWVzc2FnZXM=');
+@$core.Deprecated('Use shareResponseDescriptor instead')
+const ShareResponse$json = const {
+  '1': 'ShareResponse',
+  '2': const [
+    const {'1': 'link', '3': 1, '4': 1, '5': 9, '10': 'link'},
+  ],
+};
+
+/// Descriptor for `ShareResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List shareResponseDescriptor = $convert.base64Decode('Cg1TaGFyZVJlc3BvbnNlEhIKBGxpbmsYASABKAlSBGxpbms=');

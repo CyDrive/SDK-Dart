@@ -240,6 +240,103 @@ class LoginRequest extends $pb.GeneratedMessage {
   void clearPassword() => clearField(2);
 }
 
+class ShareRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ShareRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'models'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'filePath')
+    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'expire', $pb.PbFieldType.O3)
+    ..p<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'to', $pb.PbFieldType.P3)
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'password')
+    ..a<$core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'accessCount', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  ShareRequest._() : super();
+  factory ShareRequest({
+    $core.String? filePath,
+    $core.int? expire,
+    $core.Iterable<$core.int>? to,
+    $core.String? password,
+    $core.int? accessCount,
+  }) {
+    final _result = create();
+    if (filePath != null) {
+      _result.filePath = filePath;
+    }
+    if (expire != null) {
+      _result.expire = expire;
+    }
+    if (to != null) {
+      _result.to.addAll(to);
+    }
+    if (password != null) {
+      _result.password = password;
+    }
+    if (accessCount != null) {
+      _result.accessCount = accessCount;
+    }
+    return _result;
+  }
+  factory ShareRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ShareRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ShareRequest clone() => ShareRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ShareRequest copyWith(void Function(ShareRequest) updates) => super.copyWith((message) => updates(message as ShareRequest)) as ShareRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ShareRequest create() => ShareRequest._();
+  ShareRequest createEmptyInstance() => create();
+  static $pb.PbList<ShareRequest> createRepeated() => $pb.PbList<ShareRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ShareRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ShareRequest>(create);
+  static ShareRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get filePath => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set filePath($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasFilePath() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearFilePath() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.int get expire => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set expire($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasExpire() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearExpire() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.int> get to => $_getList(2);
+
+  @$pb.TagNumber(4)
+  $core.String get password => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set password($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasPassword() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearPassword() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get accessCount => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set accessCount($core.int v) { $_setSignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasAccessCount() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearAccessCount() => clearField(5);
+}
+
 class GetFileListResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetFileListResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'models'), createEmptyInstance: create)
     ..pc<$2.FileInfo>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fileInfoList', $pb.PbFieldType.PM, subBuilder: $2.FileInfo.create)
@@ -584,5 +681,52 @@ class GetMessageResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<$3.Message> get messages => $_getList(0);
+}
+
+class ShareResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ShareResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'models'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'link')
+    ..hasRequiredFields = false
+  ;
+
+  ShareResponse._() : super();
+  factory ShareResponse({
+    $core.String? link,
+  }) {
+    final _result = create();
+    if (link != null) {
+      _result.link = link;
+    }
+    return _result;
+  }
+  factory ShareResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ShareResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ShareResponse clone() => ShareResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ShareResponse copyWith(void Function(ShareResponse) updates) => super.copyWith((message) => updates(message as ShareResponse)) as ShareResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ShareResponse create() => ShareResponse._();
+  ShareResponse createEmptyInstance() => create();
+  static $pb.PbList<ShareResponse> createRepeated() => $pb.PbList<ShareResponse>();
+  @$core.pragma('dart2js:noInline')
+  static ShareResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ShareResponse>(create);
+  static ShareResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get link => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set link($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasLink() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearLink() => clearField(1);
 }
 
