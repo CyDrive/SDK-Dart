@@ -36,7 +36,7 @@ class CyDriveClient {
     _cookies = CookieManager(CookieJar());
     _client.interceptors.add(_cookies);
     _client.options.baseUrl = _baseAddr;
-    _client.options.connectTimeout = 1000;
+    _client.options.connectTimeout = 2000;
     _account = account;
   }
 
