@@ -181,6 +181,7 @@ class CyDriveClient {
         sender: _deviceId,
         receiver: receiver,
         type: MessageType.Text,
+        content: text,
         sendedAt: Timestamp.fromDateTime(DateTime.now()));
 
     await _sendMessage(message);
