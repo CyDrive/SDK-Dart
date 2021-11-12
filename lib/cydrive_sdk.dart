@@ -176,7 +176,7 @@ class CyDriveClient {
     return true;
   }
 
-  Future sendText(String text, int receiver) async {
+  Future<Message> sendText(String text, int receiver) async {
     var message = Message(
         sender: _deviceId,
         receiver: receiver,
@@ -184,6 +184,8 @@ class CyDriveClient {
         sendedAt: Timestamp.fromDateTime(DateTime.now()));
 
     await _sendMessage(message);
+
+    return message;
   }
 
   Future _sendMessage(Message message) async {
