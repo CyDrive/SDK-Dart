@@ -158,11 +158,7 @@ class CyDriveClient {
     return deleteResponse.fileInfo;
   }
 
-  Future<bool> connectMessageService({int? deviceId}) async {
-    if (deviceId != null) {
-      _deviceId = deviceId;
-    }
-
+  Future<bool> connectMessageService() async {
     if (!isLogin) {
       return false;
     }

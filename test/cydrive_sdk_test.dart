@@ -9,7 +9,7 @@ import 'package:cydrive_sdk/cydrive_sdk.dart';
 void main() {
   Account account =
       Account(email: "test@cydrive.io", password: passwordHash("hello_world"));
-  final client = CyDriveClient("123.57.39.79", 1, account: account);
+  final client = CyDriveClient("123.57.39.79", account: account);
   test('login', () async {
     var isLogin = await client.login();
     var account = client.account;
