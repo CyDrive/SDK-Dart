@@ -20,8 +20,8 @@ import 'package:cookie_jar/cookie_jar.dart';
 
 class CyDriveClient {
   late final String _baseAddr;
-  late String _deviceId;
-  late String deviceName;
+  late final String deviceId;
+  late final String deviceName;
   Account? _account;
   final dio.Dio _client = dio.Dio();
   late WebSocket _messageClient;
@@ -33,7 +33,7 @@ class CyDriveClient {
 
   CyDriveClient(this.serverHost, {Account? account, String? deviceName}) {
     _baseAddr = "http://$serverHost:6454";
-    getDeviceId().then((value) => _deviceId = value);
+    getDeviceId().then((value) => deviceId = value);
     if (deviceName != null) {
       this.deviceName = deviceName;
     } else {
@@ -168,7 +168,7 @@ class CyDriveClient {
     String cookieHeader = cookies.join("; ");
     String wsAddr = _baseAddr.replaceAll("http", "ws");
     _messageClient = await WebSocket.connect(
-        "$wsAddr/message_service?device_id=$_deviceId",
+        "$wsAddr/message_service?device_id=$deviceId",
         headers: {"Cookie": cookieHeader});
 
     _onRecvMessage = _messageClient.map((event) {
@@ -189,7 +189,7 @@ class CyDriveClient {
   }
 
   Future _sendMessage(Message message) async {
-    message.sender = _deviceId;
+    message.sender = deviceId;
     message.senderName = deviceName;
     message.sendedAt = Timestamp.fromDateTime(DateTime.now());
 
