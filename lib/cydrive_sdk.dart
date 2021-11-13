@@ -37,7 +37,7 @@ class CyDriveClient {
     if (deviceName != null) {
       this.deviceName = deviceName;
     } else {
-      getDeviceName().then((value) => deviceName = value);
+      getDeviceName().then((value) => this.deviceName = value);
     }
 
     _cookies = CookieManager(CookieJar());
