@@ -17,20 +17,22 @@ import '../consts/enums.pbenum.dart' as $1;
 class Message extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Message', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'models'), createEmptyInstance: create)
     ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sender', $pb.PbFieldType.O3)
-    ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'receiver', $pb.PbFieldType.O3)
-    ..e<$1.MessageType>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: $1.MessageType.Text, valueOf: $1.MessageType.valueOf, enumValues: $1.MessageType.values)
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content')
-    ..aOM<$0.Timestamp>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sendedAt', subBuilder: $0.Timestamp.create)
-    ..a<$core.int>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'expire', $pb.PbFieldType.O3)
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sender')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'senderName')
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'receiver')
+    ..e<$1.MessageType>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: $1.MessageType.Text, valueOf: $1.MessageType.valueOf, enumValues: $1.MessageType.values)
+    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content')
+    ..aOM<$0.Timestamp>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sendedAt', subBuilder: $0.Timestamp.create)
+    ..a<$core.int>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'expire', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
   Message._() : super();
   factory Message({
     $fixnum.Int64? id,
-    $core.int? sender,
-    $core.int? receiver,
+    $core.String? sender,
+    $core.String? senderName,
+    $core.String? receiver,
     $1.MessageType? type,
     $core.String? content,
     $0.Timestamp? sendedAt,
@@ -42,6 +44,9 @@ class Message extends $pb.GeneratedMessage {
     }
     if (sender != null) {
       _result.sender = sender;
+    }
+    if (senderName != null) {
+      _result.senderName = senderName;
     }
     if (receiver != null) {
       _result.receiver = receiver;
@@ -91,59 +96,68 @@ class Message extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get sender => $_getIZ(1);
+  $core.String get sender => $_getSZ(1);
   @$pb.TagNumber(2)
-  set sender($core.int v) { $_setSignedInt32(1, v); }
+  set sender($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasSender() => $_has(1);
   @$pb.TagNumber(2)
   void clearSender() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.int get receiver => $_getIZ(2);
+  $core.String get senderName => $_getSZ(2);
   @$pb.TagNumber(3)
-  set receiver($core.int v) { $_setSignedInt32(2, v); }
+  set senderName($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasReceiver() => $_has(2);
+  $core.bool hasSenderName() => $_has(2);
   @$pb.TagNumber(3)
-  void clearReceiver() => clearField(3);
+  void clearSenderName() => clearField(3);
 
   @$pb.TagNumber(4)
-  $1.MessageType get type => $_getN(3);
+  $core.String get receiver => $_getSZ(3);
   @$pb.TagNumber(4)
-  set type($1.MessageType v) { setField(4, v); }
+  set receiver($core.String v) { $_setString(3, v); }
   @$pb.TagNumber(4)
-  $core.bool hasType() => $_has(3);
+  $core.bool hasReceiver() => $_has(3);
   @$pb.TagNumber(4)
-  void clearType() => clearField(4);
+  void clearReceiver() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get content => $_getSZ(4);
+  $1.MessageType get type => $_getN(4);
   @$pb.TagNumber(5)
-  set content($core.String v) { $_setString(4, v); }
+  set type($1.MessageType v) { setField(5, v); }
   @$pb.TagNumber(5)
-  $core.bool hasContent() => $_has(4);
+  $core.bool hasType() => $_has(4);
   @$pb.TagNumber(5)
-  void clearContent() => clearField(5);
+  void clearType() => clearField(5);
 
   @$pb.TagNumber(6)
-  $0.Timestamp get sendedAt => $_getN(5);
+  $core.String get content => $_getSZ(5);
   @$pb.TagNumber(6)
-  set sendedAt($0.Timestamp v) { setField(6, v); }
+  set content($core.String v) { $_setString(5, v); }
   @$pb.TagNumber(6)
-  $core.bool hasSendedAt() => $_has(5);
+  $core.bool hasContent() => $_has(5);
   @$pb.TagNumber(6)
-  void clearSendedAt() => clearField(6);
-  @$pb.TagNumber(6)
-  $0.Timestamp ensureSendedAt() => $_ensure(5);
+  void clearContent() => clearField(6);
 
   @$pb.TagNumber(7)
-  $core.int get expire => $_getIZ(6);
+  $0.Timestamp get sendedAt => $_getN(6);
   @$pb.TagNumber(7)
-  set expire($core.int v) { $_setSignedInt32(6, v); }
+  set sendedAt($0.Timestamp v) { setField(7, v); }
   @$pb.TagNumber(7)
-  $core.bool hasExpire() => $_has(6);
+  $core.bool hasSendedAt() => $_has(6);
   @$pb.TagNumber(7)
-  void clearExpire() => clearField(7);
+  void clearSendedAt() => clearField(7);
+  @$pb.TagNumber(7)
+  $0.Timestamp ensureSendedAt() => $_ensure(6);
+
+  @$pb.TagNumber(8)
+  $core.int get expire => $_getIZ(7);
+  @$pb.TagNumber(8)
+  set expire($core.int v) { $_setSignedInt32(7, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasExpire() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearExpire() => clearField(8);
 }
 

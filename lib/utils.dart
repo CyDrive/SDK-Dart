@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 import 'package:cydrive_sdk/models/account.pb.dart';
 import 'package:cydrive_sdk/models/http_models.pb.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:protobuf/protobuf.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 List<int> md5Hash(List<int> str) {
   return md5.convert(str).bytes;
@@ -55,4 +57,32 @@ void updateAccountInfo(Account account, SafeAccount safeAccount) {
   account.name = safeAccount.name;
   account.usage = safeAccount.usage;
   account.cap = safeAccount.cap;
+}
+
+Future<String> getDeviceId() async {
+  var info = DeviceInfoPlugin();
+
+  if (Platform.isAndroid) {
+    var androidInfo = await info.androidInfo;
+    return androidInfo.androidId!;
+  } else if (Platform.isIOS) {
+    var iosInfo = await info.iosInfo;
+    return iosInfo.identifierForVendor!;
+  }
+
+  return "";
+}
+
+Future<String> getDeviceName() async {
+  var info = DeviceInfoPlugin();
+
+  if (Platform.isAndroid) {
+    var androidInfo = await info.androidInfo;
+    return androidInfo.device!;
+  } else if (Platform.isIOS) {
+    var iosInfo = await info.iosInfo;
+    return iosInfo.name!;
+  }
+
+  return "";
 }

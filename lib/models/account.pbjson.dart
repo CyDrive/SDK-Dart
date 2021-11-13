@@ -26,20 +26,19 @@ final $typed_data.Uint8List safeAccountDescriptor = $convert.base64Decode('CgtTY
 const Account$json = const {
   '1': 'Account',
   '2': const [
-    const {'1': 'id', '3': 1, '4': 1, '5': 5, '8': const {}, '10': 'id'},
-    const {'1': 'email', '3': 2, '4': 1, '5': 9, '8': const {}, '10': 'email'},
-    const {'1': 'name', '3': 3, '4': 1, '5': 9, '8': const {}, '10': 'name'},
-    const {'1': 'usage', '3': 4, '4': 1, '5': 3, '8': const {}, '10': 'usage'},
-    const {'1': 'cap', '3': 5, '4': 1, '5': 3, '8': const {}, '10': 'cap'},
-    const {'1': 'password', '3': 6, '4': 1, '5': 9, '8': const {}, '10': 'password'},
+    const {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
+    const {'1': 'email', '3': 2, '4': 1, '5': 9, '10': 'email'},
+    const {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'usage', '3': 4, '4': 1, '5': 3, '10': 'usage'},
+    const {'1': 'cap', '3': 5, '4': 1, '5': 3, '10': 'cap'},
+    const {'1': 'password', '3': 6, '4': 1, '5': 9, '10': 'password'},
     const {'1': 'created_at', '3': 7, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
     const {'1': 'updated_at', '3': 8, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
   ],
-  '7': const {},
 };
 
 /// Descriptor for `Account`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List accountDescriptor = $convert.base64Decode('CgdBY2NvdW50EhgKAmlkGAEgASgFQgi6uRkECgIoAVICaWQSIAoFZW1haWwYAiABKAlCCrq5GQYKBDABQAFSBWVtYWlsEhwKBG5hbWUYAyABKAlCCLq5GQQKAkABUgRuYW1lEh8KBXVzYWdlGAQgASgDQgm6uRkFCgM6ATBSBXVzYWdlEhsKA2NhcBgFIAEoA0IJurkZBQoDOgEwUgNjYXASJAoIcGFzc3dvcmQYBiABKAlCCLq5GQQKAkABUghwYXNzd29yZBI5CgpjcmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIJY3JlYXRlZEF0EjkKCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgl1cGRhdGVkQXQ6Brq5GQIIAQ==');
+final $typed_data.Uint8List accountDescriptor = $convert.base64Decode('CgdBY2NvdW50Eg4KAmlkGAEgASgFUgJpZBIUCgVlbWFpbBgCIAEoCVIFZW1haWwSEgoEbmFtZRgDIAEoCVIEbmFtZRIUCgV1c2FnZRgEIAEoA1IFdXNhZ2USEAoDY2FwGAUgASgDUgNjYXASGgoIcGFzc3dvcmQYBiABKAlSCHBhc3N3b3JkEjkKCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgljcmVhdGVkQXQSOQoKdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCXVwZGF0ZWRBdA==');
 @$core.Deprecated('Use accountListDescriptor instead')
 const AccountList$json = const {
   '1': 'AccountList',

@@ -20,7 +20,8 @@ import 'package:cookie_jar/cookie_jar.dart';
 
 class CyDriveClient {
   late final String _baseAddr;
-  int _deviceId;
+  late String _deviceId;
+  late String deviceName;
   Account? _account;
   final dio.Dio _client = dio.Dio();
   late WebSocket _messageClient;
@@ -30,8 +31,14 @@ class CyDriveClient {
   bool isLogin = false;
   final String serverHost;
 
-  CyDriveClient(this.serverHost, this._deviceId, {Account? account}) {
+  CyDriveClient(this.serverHost, {Account? account, String? deviceName}) {
     _baseAddr = "http://$serverHost:6454";
+    getDeviceId().then((value) => _deviceId = value);
+    if (deviceName != null) {
+      this.deviceName = deviceName;
+    } else {
+      getDeviceName().then((value) => deviceName = value);
+    }
 
     _cookies = CookieManager(CookieJar());
     _client.interceptors.add(_cookies);
@@ -176,13 +183,9 @@ class CyDriveClient {
     return true;
   }
 
-  Future<Message> sendText(String text, int receiver) async {
-    var message = Message(
-        sender: _deviceId,
-        receiver: receiver,
-        type: MessageType.Text,
-        content: text,
-        sendedAt: Timestamp.fromDateTime(DateTime.now()));
+  Future<Message> sendText(String text, String receiver) async {
+    var message =
+        Message(receiver: receiver, type: MessageType.Text, content: text);
 
     await _sendMessage(message);
 
@@ -190,6 +193,10 @@ class CyDriveClient {
   }
 
   Future _sendMessage(Message message) async {
+    message.sender = _deviceId;
+    message.senderName = deviceName;
+    message.sendedAt = Timestamp.fromDateTime(DateTime.now());
+
     var messageString = jsonEncode(message.toProto3Json());
     _messageClient.add(messageString);
   }

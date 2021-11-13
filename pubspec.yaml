@@ -1,6 +1,6 @@
 name: cydrive_sdk
 description: A new Flutter package project.
-version: 0.4.2
+version: 0.5.0
 repository: https://github.com/CyDrive/dart-sdk
 
 environment:
@@ -17,6 +17,7 @@ dependencies:
   dio_cookie_manager: ^2.0.0
   crypto: ^3.0.1
   cookie_jar: ^3.0.1
+  device_info_plus: ^3.1.1
 
 dev_dependencies:
   flutter_test:
